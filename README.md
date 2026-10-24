@@ -67,8 +67,8 @@ These results suggest that the two-cluster solution is robust to the weighting c
 ## 5. Next Steps
 
 1. Test clustering stability through repeated participant subsampling.
-2. Characterize the candidate clusters using variables not used to construct them.
-3. Evaluate associations with PRS and SAA status.
-4. Use mixed-effects models to test whether longitudinal MoCA decline differs between clusters.
+2. Characterize the candidate clusters using variables not used to construct them. (additionally, do some initial data exploration/ analysis without any changes)
+4. Evaluate associations with PRS and SAA status.
+5. Use mixed-effects models to test whether longitudinal MoCA decline differs between clusters.
 
 **Current status:** Initial multiview clustering and weight-sensitivity analyses are complete. The two-cluster solution remains exploratory pending stability testing and downstream validation.
