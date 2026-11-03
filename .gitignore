@@ -1,0 +1,18 @@
+# Python virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Datasets - exclude all raw and processed data
+Datasets/
+
+# Generated results
+Results/
+
+# OS files
+.DS_Store
