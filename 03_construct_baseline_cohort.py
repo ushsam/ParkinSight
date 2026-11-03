@@ -159,3 +159,32 @@ print("Clinical:", clinical_cohort.shape)
 print("CSF:", csf_cohort.shape)
 print("Plasma:", plasma_cohort.shape)
 print("\nBaseline cohort construction complete.")
+
+
+# Load cohort IDs
+cohort = pd.read_csv(
+    "Datasets/Processed/baseline_cohort_ids.csv"
+)
+
+# Load curated clinical data
+clinical = pd.read_excel(
+    "Datasets/Raw/PPMI_Curated_Data_Cut_Public_20260810.xlsx",
+    sheet_name="20260810"
+)
+
+# Standardize participant IDs
+clinical["PATNO"] = clinical["PATNO"].astype(str).str.replace(r"\.0$", "", regex=True)
+cohort["PATNO"] = cohort["PATNO"].astype(str).str.replace(r"\.0$", "", regex=True)
+
+# Filter Project 9000 baseline cohort
+project_cohort = clinical[
+    clinical["PATNO"].isin(cohort["PATNO"])
+    & (clinical["EVENT_ID"] == "BL")
+].copy()
+
+# Inspect subgroup composition
+print(project_cohort["subgroup"].value_counts(dropna=False))
+print("\nSubgroup percentages:")
+print(
+    project_cohort["subgroup"].value_counts(normalize=True, dropna=False) * 100
+)

@@ -166,3 +166,27 @@ for name, df in [("CSF", csf), ("Plasma", plasma)]:
     print(f"Completely missing feature columns: {all_missing.sum():,}")
 
 print("\nAudit complete. No source files were modified.")
+
+
+file = "Datasets/Raw/PPMI_Curated_Data_Cut_Public_20260810.xlsx"
+
+clinical = pd.read_excel(
+    file,
+    sheet_name="20260810"
+)
+
+# Find potentially relevant columns
+keywords = ["COHORT", "DIAG", "GROUP", "SUBGROUP", "ENROLL"]
+
+cohort_columns = [
+    col for col in clinical.columns
+    if any(word in col.upper() for word in keywords)
+]
+
+print("Potential cohort/diagnosis columns:")
+print(cohort_columns)
+
+# Inspect unique values and counts
+for col in cohort_columns:
+    print(f"\n{col}:")
+    print(clinical[col].value_counts(dropna=False).head(20))
