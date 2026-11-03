@@ -52,3 +52,25 @@ for file in files:
 
     except Exception as exc:
         print(f"  Inspection error: {exc}")
+
+
+file = "Datasets/Raw/PPMI_Curated_Data_Cut_Public_20260810.xlsx"
+
+clinical = pd.read_excel(
+    file,
+    sheet_name="20260810"
+)
+
+# Find columns containing date-related terms
+date_columns = [
+    col for col in clinical.columns
+    if any(term in col.upper() for term in ["DATE", "DT"])
+]
+
+print("Potential date columns:")
+print(date_columns)
+
+# Inspect sample values
+for col in date_columns:
+    print(f"\n{col}:")
+    print(clinical[col].dropna().head(10).tolist())
